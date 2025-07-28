@@ -162,7 +162,7 @@ def extract_pdf(pdf_path):
             title = sorted(headings, key=lambda h: (-h["conf"], h["y0"]))[0]["text"]
         return title, headings
     except Exception as e:
-        print(f"⚠️ Error processing {pdf_path}: {e}")
+        print(f" Error processing {pdf_path}: {e}")
         return os.path.splitext(os.path.basename(pdf_path))[0], []
 
 def filter_outline(outline, max_items=20):
@@ -204,20 +204,20 @@ def main():
     input_dir = "/app/input"
     output_dir = "/app/output"
     if not os.path.exists(input_dir):
-        print(f"❌ Input folder not found at: {input_dir}")
+        print(f" Input folder not found at: {input_dir}")
         return
     os.makedirs(output_dir, exist_ok=True)
     pdfs = [f for f in os.listdir(input_dir) if f.lower().endswith(".pdf")]
     if not pdfs:
-        print(f"⚠️ No PDF files found in input folder: {input_dir}")
+        print(f" No PDF files found in input folder: {input_dir}")
         return
     tasks = [(os.path.join(input_dir, f), os.path.join(output_dir, os.path.splitext(f)[0] + ".json")) for f in pdfs]
-    print(f"🚀 Starting extraction from {len(tasks)} PDF(s)...")
+    print(f" Starting extraction from {len(tasks)} PDF(s)...")
     total_start_time = time.time()
     with cf.ProcessPoolExecutor(max_workers=min(8, len(tasks))) as executor:
         executor.map(worker, tasks)
     total_processing_time = time.time() - total_start_time
-    print(f"✅ All PDFs processed in {total_processing_time:.2f} sec")
+    print(f" All PDFs processed in {total_processing_time:.2f} sec")
 
 if __name__ == "__main__":
     main()
