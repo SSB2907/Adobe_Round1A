@@ -9,11 +9,11 @@ The goal is to extract a **structured JSON outline** from a given PDF, including
 - A hierarchical list of headings at levels **H1**, **H2**, and **H3**
 
 The solution is designed to be:
-- ⚡ **Fast** — Executes under **10 seconds** for a 50-page PDF
-- 📦 **Offline** — Fully Dockerized and requires **no internet access**
-- 💻 **Portable** — Compatible with **CPU-only (amd64)** architecture
-- 🌐 **Multilingual** — Supports English, Hindi, Marathi, and other Indic languages
-- ✅ **Constraint-Compliant** — Outputs clean, valid JSON in required format
+-  **Fast** — Executes under **10 seconds** for a 50-page PDF
+-  **Offline** — Fully Dockerized and requires **no internet access**
+-  **Portable** — Compatible with **CPU-only (amd64)** architecture
+-  **Multilingual** — Supports English, Hindi, Marathi, and other Indic languages
+-  **Constraint-Compliant** — Outputs clean, valid JSON in required format
 
 ---
 
@@ -95,17 +95,20 @@ No internet-dependent or heavy ML libraries used
 
 Docker Setup
 Build the Docker Image
+
 docker build -t heading-extractor:adobe .
 
 Run the Extractor
 Make sure your PDF files are placed inside the input/ directory.
 On Linux/macOS/WSL
+
 docker run --rm \
   -v "$(pwd)/input":/app/input \
   -v "$(pwd)/output":/app/output \
   heading-extractor:adobe
 
 On Windows PowerShell
+
  docker run --rm `
    -v "${PWD}\input:/app/input" `
    -v "${PWD}\output:/app/output" `
@@ -135,12 +138,12 @@ Output:
 
 Constraints Satisfied
 Constraint	Status
-Run time ≤ 10 sec / 50 pages✅
-No internet access	✅
-Runs on CPU (amd64)	✅
-Model size ≤ 200MB (none used)✅
-Output JSON format correct✅
-Multilingual support✅
+Run time ≤ 10 sec / 50 pages
+No internet access	
+Runs on CPU (amd64)	
+Model size ≤ 200MB (none used)
+Output JSON format correct
+Multilingual support
 
 
 Notes
